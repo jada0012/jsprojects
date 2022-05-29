@@ -50,7 +50,9 @@ const cardArray  =[
 
 
 ]
-const cardsChosen =[]
+let cardsChosen =[]
+let cardsChosenIds = []
+const cardsWon = []
 cardArray.sort( ()=>0.5 - Math.random()) //compares values and sorts through it, idk how it works
 const gridDisplay = document.querySelector("#grid")
 
@@ -66,17 +68,41 @@ function createBoard() {
     }
 
 }
-
+function checkMatch(){
+    const cards = document.querySelectorAll("img")
+    const Score = document.getElementById("result")
+    console.log("check for match!!")
+    if (cardsChosen[0] === cardsChosen[1]){
+        alert("match found!!!!")
+        cards[cardsChosenIds[0]].setAttribute('src', '/memoryGame/images/white.png')
+        cards[cardsChosenIds[1]].setAttribute('src', '/memoryGame/images/white.png')
+        cards[cardsChosenIds[0]].removeEventListener('click', flipCard)
+        cards[cardsChosenIds[1]].removeEventListener('click', flipCard)
+        cardsWon.push(cardsChosen)
+        Score.innerHTML= cardsWon.length
+    }else{
+        alert("sorry try again. ")
+        cards[cardsChosenIds[0]].setAttribute('src', '/memoryGame/images/blank.png')
+        cards[cardsChosenIds[1]].setAttribute('src', '/memoryGame/images/blank.png')
+    }
+    
+    cardsChosen = []
+    cardsChosenIds = []
+    if (cardsWon.length === (cardArray.length)/2){
+        alert("you have won the game!")
+    }
+}
 createBoard()
 function flipCard(){
     console.log(cardArray) 
     
     const cardId = this.getAttribute("data-id") //not really sure what the this function means, even after reading mozilla docs, but it allows us to use methods on it and get attributes from teh called item (in this case the one that was clicked, since it's called on the event listener)
-    console.log(cardArray[cardId].name)
     cardsChosen.push(cardArray[cardId].name)
-    console.log(cardsChosen)
-    console.log("clicked", cardId)
+    cardsChosenIds.push(cardId)
     this.setAttribute('src', cardArray[cardId].img)
+    if (cardsChosen.length ===2){
+        setTimeout( checkMatch, 500)
+    }
 
     
 
