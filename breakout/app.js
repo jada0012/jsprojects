@@ -106,6 +106,7 @@ function moveBall(){
     
 }
 startButton.addEventListener("click", ()=>{
+    // let currentBallPos = ballStart
     timerID = setInterval(moveBall, 10)
 
 })

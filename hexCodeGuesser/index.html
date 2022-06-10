@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+        <button id="change">change colour</button>
+    </div>
+    <form onsubmit="return false">
+        <div>
+            <label for="red">red</label>
+            <input type="number" name="redNumber" id="red" required value = "0" min="0" max="255">
+            <span id="nearRed"></span>
+            
+        </div>
+        <div>
+            <label for="green">green</label>
+            <input type="number" name="greenNumber" id="green" required value = "0" min="0" max="255">
+            <span id="nearGreen"></span>
+        </div>
+        <div>
+
+            <label for="blue">blue</label>
+
+            <input type="number" name="blueNumber" id="blue" required value = "0" min="0" max="255">
+            <span id="nearBlue"></span>
+            
+        </div>
+        <div>
+            <button id="validate">submit</button>
+
+        </div>
+
+    </form>
+    <script src="app.js"></script>
+</body>
+</html>
